@@ -59,6 +59,8 @@ def getDataRobot(rtde_r):
     rtde_r.getPayloadCog()
     # Payload inertia matrix elements [lxx,lyy,lzz,lxy,lxz,lyz] expressed in kg*m^2
     rtde_r.getPayloadInertia()
+    # Joint Temperatures
+    rtde_r.getJointTemperatures()
     return "Data Stored"
 
 
