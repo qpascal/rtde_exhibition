@@ -1,4 +1,5 @@
-# rtde_exhibition
+# RTDE EXHIBITION
+
 Robotic cell programming with real-time piloting and synchronized simulation
 
 ## Predefined positions
