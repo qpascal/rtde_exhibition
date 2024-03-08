@@ -2,6 +2,7 @@
 
 Robotic cell programming with real-time piloting and synchronized simulation
 
+
 ## Predefined positions
 
 Home position : position de départ du code fonctionnel
@@ -16,6 +17,8 @@ Max Push position : position maximale de poussée de chaque bloc
 Pickup position : position d'approche du bloc à demi sorti
 
 Place position : position d'approche du dépôt des blocs retirés ----> variable avec niveau de Z
+
+
 ## Functions
 
 connection/deconnexion : fonctions de connection au robot
