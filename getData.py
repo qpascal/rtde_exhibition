@@ -1,6 +1,4 @@
-# Modification by Melchior
-# Comment added
-
+# Imported Python libraries from ur_rtde
 from rtde_control import RTDEControlInterface as RTDEControl
 from rtde_receive import RTDEReceiveInterface as RTDEReceive
 import datetime
