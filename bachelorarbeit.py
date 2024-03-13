@@ -68,7 +68,7 @@ rtde_c.moveJ(homePosition, vel, acc)
 
 # Go to position in ServoJ
 counter = 0
-while counter<=1250:
+while counter<=1500:
     t_start = rtde_c.initPeriod()
     rtde_c.servoJ(firstGoalPosition, vel, acc, dt, lookahead_time, gain)
     robotData(rtde_r)
