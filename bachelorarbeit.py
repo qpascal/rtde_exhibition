@@ -57,20 +57,40 @@ time_counter = 0.0
 
 # Attribution of positions
 homePosition = [0.11096344143152237, -1.1199520269977015, -2.5396979490863245, -0.09851295152773076, 1.4749480485916138, 0.31134793162345886]
-goalPosition = [0.7451574206352234, -1.3359397093402308, -2.2915383020984095, -0.523752514516012, 0.9417466521263123, 0.31137189269065857]
+firstGoalPosition = [0.7451574206352234, -1.3359397093402308, -2.2915383020984095, -0.523752514516012, 0.9417466521263123, 0.31137189269065857]
+secondGoalPosition = [-0.0847085157977503, -1.51786977449526, -2.3583067099200647, -0.5191591421710413, 1.4815809726715088, 0.31137189269065857]
+thirdGoalPosition = [-0.07562238374818975, -1.3190715948687952, -2.1666491667376917, -1.1410210768329065, 1.474852204322815, 0.311335951089859]
 
-# Go to home position
+print(rtde_r.getActualQ())
+
+# Go to home position in moveJ
 rtde_c.moveJ(homePosition, vel, acc)
 
-# Go to goal position
+# Go to position in ServoJ
 counter = 0
 while counter<=1250:
     t_start = rtde_c.initPeriod()
-    rtde_c.servoJ(goalPosition, vel, acc, dt, lookahead_time, gain)
+    rtde_c.servoJ(firstGoalPosition, vel, acc, dt, lookahead_time, gain)
     robotData(rtde_r)
     rtde_c.waitPeriod(t_start)
     time_counter += dt
     counter += 1
+
+# Go to position in ServoL
+counter = 0
+while counter<=5000:
+    t_start = rtde_c.initPeriod()
+    rtde_c.servoL(secondGoalPosition, vel, acc, dt, lookahead_time, gain)
+    robotData(rtde_r)
+    rtde_c.waitPeriod(t_start)
+    time_counter += dt
+    counter += 1
+
+# Go to position in moveL
+rtde_c.moveL(thirdGoalPosition, vel, acc)
+
+# Go back to home position
+rtde_c.moveJ(homePosition, vel, acc)
 
 
 # End connection with robot
