@@ -76,9 +76,11 @@ while counter<=1250:
     rtde_c.waitPeriod(t_start)
     time_counter += dt
     counter += 1
+rtde_c.servoStop()
 
+# Go to position in moveL
+rtde_c.moveL(thirdGoalPosition, vel, acc)
 
-'''
 # Go to position in ServoL
 counter = 0
 while counter<=5000:
@@ -88,13 +90,10 @@ while counter<=5000:
     rtde_c.waitPeriod(t_start)
     time_counter += dt
     counter += 1
-
-# Go to position in moveL
-rtde_c.moveL(thirdGoalPosition, vel, acc)
+rtde_c.servoStop()
 
 # Go back to home position
 rtde_c.moveJ(homePosition, vel, acc)
-'''
 
 
 
