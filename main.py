@@ -72,7 +72,7 @@ def robotData(rtde_r):
     actualTCPSpeed = rtde_r.getActualTCPSpeed()
     # get the actual current
     actualCurrent = rtde_r.getActualCurrent()
-    return "Actual joint positions:", actualQ, "Actual TCP Force:", actualTCPForce, "Actual TCP Speed:", actualTCPSpeed, "Actual current inside the robot:", actualCurrent
+    return "Actual joint positions:", actualQ, "\n Actual TCP Force:", actualTCPForce, "\n Actual TCP Speed:", actualTCPSpeed, "\n Actual current inside the robot:", actualCurrent
 
 
 print("Control Interrupted!")
