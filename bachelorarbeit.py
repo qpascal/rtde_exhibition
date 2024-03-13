@@ -5,6 +5,7 @@ import math
 import os
 import psutil
 import sys
+import time
 
 
 # Function to gather data from robot
@@ -68,7 +69,7 @@ rtde_c.moveJ(homePosition, vel, acc)
 
 # Go to position in ServoJ
 counter = 0
-while counter<=1500:
+while counter<=1250:
     t_start = rtde_c.initPeriod()
     rtde_c.servoJ(firstGoalPosition, vel, acc, dt, lookahead_time, gain)
     robotData(rtde_r)
@@ -76,6 +77,8 @@ while counter<=1500:
     time_counter += dt
     counter += 1
 
+
+'''
 # Go to position in ServoL
 counter = 0
 while counter<=5000:
@@ -91,6 +94,8 @@ rtde_c.moveL(thirdGoalPosition, vel, acc)
 
 # Go back to home position
 rtde_c.moveJ(homePosition, vel, acc)
+'''
+
 
 
 # End connection with robot
