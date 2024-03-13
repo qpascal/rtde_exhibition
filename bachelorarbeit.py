@@ -17,7 +17,7 @@ def robotData(rtde_r):
     actualTCPSpeed = rtde_r.getActualTCPSpeed()
     # get the actual current
     actualCurrent = rtde_r.getActualCurrent()
-    return "Actual joint positions:", actualQ, "\n Actual TCP Force:", actualTCPForce, "\n Actual TCP Speed:", actualTCPSpeed, "\n Actual current inside the robot:", actualCurrent
+    print("Actual joint positions:", actualQ, "\n Actual TCP Force:", actualTCPForce, "\n Actual TCP Speed:", actualTCPSpeed, "\n Actual current inside the robot:", actualCurrent)
 
 
 # Parameters
@@ -64,7 +64,7 @@ rtde_c.moveJ(homePosition, vel, acc)
 
 # Go to goal position
 counter = 0
-while counter<=5000:
+while counter<=1250:
     t_start = rtde_c.initPeriod()
     rtde_c.servoJ(goalPosition, vel, acc, dt, lookahead_time, gain)
     robotData(rtde_r)
