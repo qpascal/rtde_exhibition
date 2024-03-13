@@ -6,6 +6,20 @@ import os
 import psutil
 import sys
 
+
+# Function to gather data from robot
+def robotData(rtde_r):
+    # Get the actual joint positions
+    actualQ = rtde_r.getActualQ()
+    # Get the actual TCP force
+    actualTCPForce = rtde_r.getActualTCPForce()
+    # Get the actual TCP speed
+    actualTCPSpeed = rtde_r.getActualTCPSpeed()
+    # get the actual current
+    actualCurrent = rtde_r.getActualCurrent()
+    return "Actual joint positions:", actualQ, "\n Actual TCP Force:", actualTCPForce, "\n Actual TCP Speed:", actualTCPSpeed, "\n Actual current inside the robot:", actualCurrent
+
+
 # Parameters
 vel = 0.5
 acc = 0.5
@@ -14,14 +28,13 @@ dt = 1.0/rtde_frequency  # 2ms
 flags = RTDEControl.FLAG_VERBOSE | RTDEControl.FLAG_UPLOAD_SCRIPT
 ur_cap_port = 50002
 robot_ip = "10.211.56.10"
-
 lookahead_time = 0.1
 gain = 600
-
 # ur_rtde realtime priorities
 rt_receive_priority = 90
 rt_control_priority = 85
 
+# Check connection with robot
 rtde_r = RTDEReceive(robot_ip, rtde_frequency, [], True, False, rt_receive_priority)
 rtde_c = RTDEControl(robot_ip, rtde_frequency, flags, ur_cap_port, rt_control_priority)
 
@@ -53,28 +66,14 @@ rtde_c.moveJ(homePosition, vel, acc)
 counter = 0
 while counter<=5000:
     t_start = rtde_c.initPeriod()
-    rtde_c.servoL(goalPosition, vel, acc, dt, lookahead_time, gain)
-    print("Actual Q: ", rtde_r.getActualQ())
-    print("Actual TCP Force: ", rtde_r.getActualTCPForce())
-    print("Actual TCP Speed: ", rtde_r.getActualTCPSpeed())
-    print("Actual Joint Current: ", rtde_r.getActualCurrent())
+    rtde_c.servoJ(goalPosition, vel, acc, dt, lookahead_time, gain)
+    robotData(rtde_r)
     rtde_c.waitPeriod(t_start)
     time_counter += dt
     counter += 1
 
-# Function to gather data from robot
-def robotData(rtde_r):
-    # Get the actual joint positions
-    actualQ = rtde_r.getActualQ()
-    # Get the actual TCP force
-    actualTCPForce = rtde_r.getActualTCPForce()
-    # Get the actual TCP speed
-    actualTCPSpeed = rtde_r.getActualTCPSpeed()
-    # get the actual current
-    actualCurrent = rtde_r.getActualCurrent()
-    return "Actual joint positions:", actualQ, "\n Actual TCP Force:", actualTCPForce, "\n Actual TCP Speed:", actualTCPSpeed, "\n Actual current inside the robot:", actualCurrent
 
-
+# End connection with robot
 print("Control Interrupted!")
 rtde_c.servoStop()
 rtde_c.stopScript()
