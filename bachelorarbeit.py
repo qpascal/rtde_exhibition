@@ -79,7 +79,7 @@ while counter<=1250:
 rtde_c.servoStop()
 
 # Go to position in moveL
-rtde_c.moveL(thirdGoalPosition, vel, acc)
+rtde_c.moveJ(thirdGoalPosition, vel, acc)
 
 # Go to position in ServoL
 counter = 0
